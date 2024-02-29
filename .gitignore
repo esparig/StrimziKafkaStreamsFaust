@@ -1,0 +1,5 @@
+# Ignore cloudadm_key.pem
+cloudadm_key.pem
+
+# Ignore kubeconfig
+kubeconfig
