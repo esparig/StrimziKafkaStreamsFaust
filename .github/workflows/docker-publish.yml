@@ -13,16 +13,12 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: faust-app
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-
+  
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -72,4 +68,3 @@ jobs:
         run: |
           cosign sign -key cosign.key -a ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$TAGS
           cosign verify -key cosign.pub ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$TAGS
-          
