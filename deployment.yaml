@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-faust-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-faust-app
+  template:
+    metadata:
+      labels:
+        app: my-faust-app
+    spec:
+      containers:
+        - name: my-faust-container
+          image: ghcr.io/esparig/strimzikafkastreamsfaust:latest
+          # Add environment variables if needed
+          # env:
+          #   - name: KAFKA_BROKER_URL
+          #     value: kafka://my-cluster-kafka-bootstrap:9092
