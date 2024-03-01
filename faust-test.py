@@ -17,10 +17,10 @@ topic = app.topic('my-topic', value_type=ClientExample)
 @app.agent(topic)
 async def process_logs(logs):
     async for log in logs:
-        print(f"Received message: {log}")
+        print(f"Received message: {log.decode('utf-8')}")
         # Extract the number from the log message
         try:
-            number = int(log.message.split()[-1])
+            number = int(log.decode('utf-8').message.split()[-1])
             print(f"Extracted number: {number}")
         except ValueError:
             # Ignore non-numeric messages
