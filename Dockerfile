@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY faust-test.py .
 
 # Set the command to run when the container starts
-CMD ["python", "faust-test.py", "worker", "-l", "info"]
+# CMD ["python", "faust-test.py", "worker", "-l", "info"]
