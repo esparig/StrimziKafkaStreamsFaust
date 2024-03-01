@@ -1,16 +1,5 @@
 import faust
 
-#class KafkaLog(faust.Record):
-#    timestamp: str
-#    level: str
-#    message: str
-
-#class ClientExample(faust.Record):
-#    log: str
-
-#class ClientExample(faust.Record, serializer='raw'):
-#    pass
-
 app = faust.App('myfaustapp', broker='kafka://my-cluster-kafka-bootstrap:9092')
 topic = app.topic('my-topic', value_type=bytes)
 
