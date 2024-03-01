@@ -1,7 +1,5 @@
 import faust
 
-app = faust.App('myfaustapp', broker='kafka://my-cluster-kafka-bootstrap:9092')
-
 #class KafkaLog(faust.Record):
 #    timestamp: str
 #    level: str
@@ -10,7 +8,10 @@ app = faust.App('myfaustapp', broker='kafka://my-cluster-kafka-bootstrap:9092')
 class ClientExample(faust.Record):
     log: str
 
-@app.agent(value_type=ClientExample)
+app = faust.App('myfaustapp', broker='kafka://my-cluster-kafka-bootstrap:9092')
+topic = app.topic('my-topic', value_type=ClientExample)
+
+@app.agent(topic)
 async def process_logs(logs):
     async for log in logs:
         # Extract the number from the log message
